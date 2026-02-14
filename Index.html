@@ -1,122 +1,136 @@
-import React, { useState, useRef } from "react"; import { motion } from "framer-motion"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Heart, Sparkles } from "lucide-react";
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz San Valentín Yasmin</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffc0cb, #ffe4e1, #ffb6c1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      text-align: center;
+    }h1 {
+  color: #c2185b;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  animation: fadeInDown 1s ease;
+}
 
-export default function SanValentinAmistad() { const [showMessage, setShowMessage] = useState(false); const audioRef = useRef(null);
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  max-width: 500px;
+  animation: zoomIn 1s ease;
+}
 
-const handleClick = () => { setShowMessage(true); if (audioRef.current) { audioRef.current.play(); } };
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
 
-return ( <div className="relative min-h-screen bg-gradient-to-br from-pink-200 via-rose-100 to-pink-300 flex flex-col items-center justify-center p-6 overflow-hidden"> {/* Música */} <audio
-ref={audioRef}
-src="https://www.bensound.com/bensound-music/bensound-love.mp3"
-/>
+.gallery img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-{/* Corazones animados de fondo */}
-  <motion.div
-    className="absolute top-10 left-10 text-pink-400 opacity-30"
-    animate={{ y: [0, -20, 0] }}
-    transition={{ repeat: Infinity, duration: 3 }}
-  >
-    <Heart size={80} />
-  </motion.div>
+button {
+  margin-top: 25px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #e91e63;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  <motion.div
-    className="absolute bottom-20 right-10 text-rose-400 opacity-30"
-    animate={{ y: [0, 20, 0] }}
-    transition={{ repeat: Infinity, duration: 4 }}
-  >
-    <Sparkles size={80} />
-  </motion.div>
+button:hover {
+  background: #c2185b;
+  transform: scale(1.05);
+}
 
-  {/* Título */}
-  <motion.h1
-    initial={{ opacity: 0, y: -40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    className="text-4xl md:text-6xl font-bold text-pink-700 text-center mb-6 drop-shadow-lg"
-  >
-    💖 ¡Feliz San Valentín, Yasmin! 💖
-  </motion.h1>
+.surprise {
+  display: none;
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: zoomIn 0.6s ease;
+}
 
-  {/* Tarjeta principal */}
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.8, delay: 0.3 }}
-    className="w-full max-w-xl"
-  >
-    <Card className="rounded-2xl shadow-2xl bg-white/90 backdrop-blur">
-      <CardContent className="p-8 text-center space-y-6">
-        <p className="text-lg md:text-xl text-gray-700">
-          Yasmin, tu amistad es uno de los regalos más hermosos de la vida.
-        </p>
-        <p className="text-base md:text-lg text-gray-600">
-          Gracias por estar siempre, por tus risas contagiosas, tus consejos sinceros y todos los momentos inolvidables que compartimos juntas.
-        </p>
+.heart {
+  position: fixed;
+  color: rgba(255, 0, 100, 0.4);
+  animation: floatUp 6s linear infinite;
+}
 
-        {/* Galería de fotos */}
-        <div className="grid grid-cols-3 gap-3 mt-4">
-          <img
-            src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70"
-            alt="Amigos riendo"
-            className="rounded-xl object-cover h-24 w-full"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc"
-            alt="Amigos abrazados"
-            className="rounded-xl object-cover h-24 w-full"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
-            alt="Grupo de amigos"
-            className="rounded-xl object-cover h-24 w-full"
-          />
-        </div>
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-40px);} 
+  to {opacity: 1; transform: translateY(0);} 
+}
 
-        <div className="flex justify-center">
-          <Heart className="text-pink-500 w-10 h-10 animate-pulse" />
-        </div>
-      </CardContent>
-    </Card>
-  </motion.div>
+@keyframes zoomIn {
+  from {opacity: 0; transform: scale(0.7);} 
+  to {opacity: 1; transform: scale(1);} 
+}
 
-  {/* Botón sorpresa */}
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 1 }}
-    className="mt-8"
-  >
-    <Button
-      onClick={handleClick}
-      className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-2xl text-lg shadow-xl"
-    >
-      Haz clic para una sorpresa 💝
-    </Button>
-  </motion.div>
+@keyframes floatUp {
+  from {transform: translateY(100vh);} 
+  to {transform: translateY(-10vh);} 
+}
 
-  {/* Mensaje sorpresa */}
-  {showMessage && (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="mt-6 bg-white rounded-2xl p-6 shadow-2xl text-center max-w-md"
-    >
-      <p className="text-xl font-semibold text-pink-600">
-        ¡Yasmin, nuestra amistad vale oro! ✨
-      </p>
-      <p className="text-gray-600 mt-2">
-        Que sigamos creando recuerdos increíbles juntos por muchos años más.
-      </p>
-    </motion.div>
-  )}
+  </style>
+</head>
+<body><audio id="music" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
 
-  <motion.footer
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 1.5 }}
-    className="absolute bottom-4 text-sm text-gray-600 text-center"
-  >
-    Hecho con cariño para celebrar nuestra amistad 💗
-  </motion.footer>
+  <h1>💖 ¡Feliz San Valentín, Yasmin! 💖</h1>  <div class="card">
+    <p><strong>Yasmin</strong>, tu amistad es uno de los regalos más hermosos de la vida.</p>
+    <p>Gracias por estar siempre, por tus risas contagiosas, tus consejos sinceros y todos los momentos inolvidables que compartimos juntas.</p><div class="gallery">
+  <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70">
+  <img src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc">
+  <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac">
 </div>
 
-); }
+<button onclick="showSurprise()">Haz clic para una sorpresa 💝</button>
+
+  </div>  <div class="surprise" id="surprise">
+    <h2>✨ Yasmin, nuestra amistad vale oro ✨</h2>
+    <p>Que sigamos creando recuerdos increíbles juntas por muchos años más 💕</p>
+  </div>  <script>
+    function showSurprise() {
+      document.getElementById('surprise').style.display = 'block';
+      document.getElementById('music').play();
+    }
+
+    // Crear corazones flotando
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+      heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+  </script></body>
+</html>
