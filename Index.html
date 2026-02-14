@@ -1,0 +1,122 @@
+import React, { useState, useRef } from "react"; import { motion } from "framer-motion"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Heart, Sparkles } from "lucide-react";
+
+export default function SanValentinAmistad() { const [showMessage, setShowMessage] = useState(false); const audioRef = useRef(null);
+
+const handleClick = () => { setShowMessage(true); if (audioRef.current) { audioRef.current.play(); } };
+
+return ( <div className="relative min-h-screen bg-gradient-to-br from-pink-200 via-rose-100 to-pink-300 flex flex-col items-center justify-center p-6 overflow-hidden"> {/* Música */} <audio
+ref={audioRef}
+src="https://www.bensound.com/bensound-music/bensound-love.mp3"
+/>
+
+{/* Corazones animados de fondo */}
+  <motion.div
+    className="absolute top-10 left-10 text-pink-400 opacity-30"
+    animate={{ y: [0, -20, 0] }}
+    transition={{ repeat: Infinity, duration: 3 }}
+  >
+    <Heart size={80} />
+  </motion.div>
+
+  <motion.div
+    className="absolute bottom-20 right-10 text-rose-400 opacity-30"
+    animate={{ y: [0, 20, 0] }}
+    transition={{ repeat: Infinity, duration: 4 }}
+  >
+    <Sparkles size={80} />
+  </motion.div>
+
+  {/* Título */}
+  <motion.h1
+    initial={{ opacity: 0, y: -40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    className="text-4xl md:text-6xl font-bold text-pink-700 text-center mb-6 drop-shadow-lg"
+  >
+    💖 ¡Feliz San Valentín, Yasmin! 💖
+  </motion.h1>
+
+  {/* Tarjeta principal */}
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay: 0.3 }}
+    className="w-full max-w-xl"
+  >
+    <Card className="rounded-2xl shadow-2xl bg-white/90 backdrop-blur">
+      <CardContent className="p-8 text-center space-y-6">
+        <p className="text-lg md:text-xl text-gray-700">
+          Yasmin, tu amistad es uno de los regalos más hermosos de la vida.
+        </p>
+        <p className="text-base md:text-lg text-gray-600">
+          Gracias por estar siempre, por tus risas contagiosas, tus consejos sinceros y todos los momentos inolvidables que compartimos juntas.
+        </p>
+
+        {/* Galería de fotos */}
+        <div className="grid grid-cols-3 gap-3 mt-4">
+          <img
+            src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70"
+            alt="Amigos riendo"
+            className="rounded-xl object-cover h-24 w-full"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc"
+            alt="Amigos abrazados"
+            className="rounded-xl object-cover h-24 w-full"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
+            alt="Grupo de amigos"
+            className="rounded-xl object-cover h-24 w-full"
+          />
+        </div>
+
+        <div className="flex justify-center">
+          <Heart className="text-pink-500 w-10 h-10 animate-pulse" />
+        </div>
+      </CardContent>
+    </Card>
+  </motion.div>
+
+  {/* Botón sorpresa */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1 }}
+    className="mt-8"
+  >
+    <Button
+      onClick={handleClick}
+      className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-2xl text-lg shadow-xl"
+    >
+      Haz clic para una sorpresa 💝
+    </Button>
+  </motion.div>
+
+  {/* Mensaje sorpresa */}
+  {showMessage && (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="mt-6 bg-white rounded-2xl p-6 shadow-2xl text-center max-w-md"
+    >
+      <p className="text-xl font-semibold text-pink-600">
+        ¡Yasmin, nuestra amistad vale oro! ✨
+      </p>
+      <p className="text-gray-600 mt-2">
+        Que sigamos creando recuerdos increíbles juntos por muchos años más.
+      </p>
+    </motion.div>
+  )}
+
+  <motion.footer
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1.5 }}
+    className="absolute bottom-4 text-sm text-gray-600 text-center"
+  >
+    Hecho con cariño para celebrar nuestra amistad 💗
+  </motion.footer>
+</div>
+
+); }
